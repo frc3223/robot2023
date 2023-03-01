@@ -35,11 +35,13 @@ void setup() {
 
 void loop() {
   duration = pulseIn(pin, HIGH);
-  if (duration < 1500) {
+  if (duration < 1750 && duration > 1250) {
     radioControl();
-  } else if (duration > 1500){
+  } else if (duration < 1250){
     drive.write(100);
     lineFollow();
+  }else{
+    radioControl();
   }
 }
 
