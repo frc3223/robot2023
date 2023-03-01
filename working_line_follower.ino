@@ -21,7 +21,7 @@
 
 Servo steer, drive;
 
-const int threshold = 1500;
+const int threshold = 1800;
 
 void setup() {
   //set a pin for the ESC/steering servo to use
