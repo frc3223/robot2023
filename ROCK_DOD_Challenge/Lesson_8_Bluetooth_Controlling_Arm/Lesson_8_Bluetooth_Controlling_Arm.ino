@@ -1,4 +1,8 @@
 #include <Servo.h>  // add the servo libraries
+//  Lesson_8_Bluetooth_Controlling_Arm mod
+//  Modified so two servos control lower arm; no sideways movement
+//  Slowed down servo rates by changing summation from 8 to 4
+//  Moved servo limits to follow summations
 Servo myservo1;  // create servo object to control a servo
 Servo myservo2;
 Servo myservo3;
@@ -14,7 +18,7 @@ void setup()
 {
    // boot posture
   myservo1.write(pos1);  
-  delay(1000);
+//  delay(1000);
   myservo2.write(pos2);
   myservo3.write(pos3);
   myservo4.write(pos4);
@@ -62,10 +66,11 @@ while (Serial.available())
 
 if(newLineReceived)
 {
+ // Serial.println(inputString[1]);
     switch(inputString[1])   
     {
-      case 'B':  T_left();  break;   // turn left
-      case 'C':  T_right();  break;//turn right 
+//      case 'B':  T_left();  break; //turn left
+//      case 'C':  T_right();  break;//turn right 
       case 'A':  RB();  break;// the lower arm will draw back 
       case 'D':  RF();  break;// the lower arm will  stretch out
       case '5':  ZK();  break;//close the claw
@@ -87,100 +92,118 @@ if(newLineReceived)
 }
 //**************************************************
 // turn left
-void T_left()
+// This section changed so two servos control lower arm; no sideways movement
+/*void T_left()
 {
     pos1=pos1+8;
-    myservo1.write(pos1);
-    delay(5);
-    if(pos1>180)
+    if(pos1>179)
     {
-      pos1=180;
+      pos1=179;
     }
+    myservo1.write(pos1);
+    delay(5);    
 }
 //turn right 
 void T_right()
 {
     pos1=pos1-8;
+    if(pos1<5)
+    {
+      pos1=5;
+    }
     myservo1.write(pos1);
     delay(5);
-    if(pos1<1)
-    {
-      pos1=1;
-    }
-}
+}*/
 //********************************************
 //close the claw
 
 void ZK()
 {
-      pos4=pos4-8;
-      Serial.println(pos4);
-      myservo4.write(pos4);
-      delay(5);
+      pos4=pos4-4;
+
       if(pos4<45)
       {
         pos4=45;
       }
+  //    Serial.println(pos4);
+  myservo4.write(pos4);
+  delay(5);
 }
 // open the claw
 void ZB()
 {
-    pos4=pos4+8;
-      Serial.println(pos4);
-      myservo4.write(pos4);
-      delay(5);
+    pos4=pos4+4;
       if(pos4>120)
       {
         pos4=120;
       }
+  //      Serial.println(pos4);
+  myservo4.write(pos4);
+  delay(5);
 }
 
 //******************************************
-// the lower arm will  stretch out
+// the lower arm will  stretch out;  uses two servos
 void RF()
 {
-    pos2=pos2-8;
-    myservo2.write(pos2);
-    delay(5);
-    if(pos2<25)
+//    Serial.print(pos2);
+//    Serial.print("\t");
+    pos2=pos2-4;
+//    Serial.print(pos2);
+//    Serial.print("\t");
+    if(pos2<5)
     {
-      pos2=25;
+      pos2=5;
     }
+//    Serial.println(pos2);
+//    Serial.print("\n");
+    myservo2.write(pos2);
+    pos1 = 180 - pos2;
+    myservo1.write(pos1);
+    delay(5);
 }
 // the lower arm will draw back 
 void RB()
 {
-    pos2=pos2+8;
-    myservo2.write(pos2);
-    delay(5);
-    if(pos2>180)
+//    Serial.print(pos2);
+//    Serial.print("\t");
+    pos2=pos2+4;
+//    Serial.print(pos2);
+//    Serial.print("\t");
+    if(pos2>175)
     {
-      pos2=180;
+      pos2=175;
     }
+//    Serial.println(pos2);
+//    Serial.print("\n");
+    myservo2.write(pos2);
+    pos1 = 180 - pos2;
+    myservo1.write(pos1);
+    delay(5);    
 }
 
 //***************************************
 //the upper arm will lift up  
 void LB()
 {
-  pos3=pos3+8;
-    myservo3.write(pos3);
-    delay(5);
+  pos3=pos3+4;
     if(pos3>135)
     {
       pos3=135;
     }
+    myservo3.write(pos3);
+    delay(5);
 }
 
 //the upper arm will go down  
 
 void LF()
 {
-  pos3=pos3-8;
+  pos3=pos3-4;
+    if(pos3<5)
+    {
+      pos3=5;
+    }
     myservo3.write(pos3);
     delay(5);
-    if(pos3<0)
-    {
-      pos3=0;
-    }
 }
