@@ -9,10 +9,12 @@ you then use the "Lesson_8_Bluetooth_Controlling_Arm" code. For further opertati
 
 Looking at the top of the robot (winch side towards you) the servos go into these spots on the audrino
 
-left bottom servo = 6
+left bottom servo = 5
 right bottom servo = 3
-servo connecting to the claw = 9
-servo that controls the claw = 5
+servo connecting to the claw = 6**
+servo that controls the claw = 9
+
+**(Up and down controls are reversed.)
 
 LINE FOLLOWER:
 To use the Linefollower the code is "ROCKRadioLineFollowEncoder.ino"
