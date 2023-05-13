@@ -51,8 +51,13 @@ FINAL BUILD - CAD:
 		- Claw Mount Spacer
  - MISC.:
 	- MindsEye Bracket
-	- Servo Mount Bracketconnects
+	- Servo Mount Bracket
 There are five PRIMARY components to the arm (and their affiliated spacers). The "Base Piece" connects via four pins to the main base of the robot, which supports the rest of the arm. The "End Piece" is the first
 free-rotating section of the arm (features the RoCK logo), supported by two servos. The "Main Section" features 15 hexagonal holes, allowing for a convenient way to fasten zip-ties to secure rogue wires. The "Main Section"
 also attaches itself to the "End Piece", increasing the length of the arm. The "Claw Attachment" is the next free-rotating section of the arm, supported by one servo on the "Main Section". With this component, two "Claw Part" 
 units move symmetrically with one servo on the "Claw Attachment".
+
+
+OBSERVATIONS:
+The "MindsEye Bracket" was our solution to a dilema in assembling the base of the robot. Since the manufactured steering brackets—enabling a fixed range of translational movement for the robot—were stripped due to overuse, we 
+3D-printed our own. 
